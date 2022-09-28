@@ -11,12 +11,15 @@ namespace MsASPNETCoreMVCPT1.Controllers {
       _logger = logger;
     }
 
-    public string Index() {
-      return "Hello World!";
+    public IActionResult Index() {
+      return View();
     }
 
-    public string Welcome(string name, int numTimes = 1) {
-      return HtmlEncoder.Default.Encode($"Hello {name}, NumTimes is: {numTimes}");
+    public IActionResult Welcome(string name, int numTimes = 1) {
+      ViewData["Message"] = $"Hello {name}";
+      ViewData["NumTimes"] = numTimes;
+
+      return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
